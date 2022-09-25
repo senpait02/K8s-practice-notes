@@ -25,3 +25,48 @@ kubectl get pods >> Sirve para ver los pods deployados
 kubectl describe pods >> Para ver mas detalles con el "describe"
 kubectl get pods -o wide >>> PAra ver mas info
 kubectl get pods nginx -o yaml >>> para ver en version yml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################### TAKE NOTESSS #######################
+#### una vez creado el deploy, se debe de crear el service del mismo, para ello se usa el <expose> #####
+kubectl expose deploy jenkins-app --port 8080 --target-port 8080 
+
+
+
+###### Luego se crea el ingress del mismo > Se puede ver mas detalle con kubectl create ingress --help ######
+kubectl create ingress jenkins-web --rule="jenkins.local.com/=jenkins-app:8080"
+OBS: en el caso de minikube, activar el ingresss
+
+
+
+
+#### Comandos rapido ####
+kubectl create deployment --name grafana-app --image grafana/grafana --replicas 2   >>> Para crear un deploy con replicas
+
+#### Para tomar ejemplo de yaml / se puede remplazar con pods, etc
+kubectl create deploy web-app6 --image nginx --replicas 50 --dry-run -o yaml
+kubectl create deploy web-app6 --image nginx --replicas 50 --dry-run -o wide

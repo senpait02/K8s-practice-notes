@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-app
+  labels:
+    app: jenkins
+    type: auto-tools
+spec:
+  template:
+    metadata:
+      name: jenkis-pod
+      labels:
+        app: jenkins
+        type: auto-tools
+    spec:
+      containers:
+        - name: jenkins-container
+          image: docker.io/jenkins/jenkins:lts-jdk11
+  replicas: 2
+  selector:
+    matchLabels:
+      type: auto-tools
+
+
