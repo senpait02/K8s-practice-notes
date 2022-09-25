@@ -1,0 +1,10 @@
+############ K8s Notes ########
+
+#### Para correr el minikube en driver podman (Como sudo darle siempre al --force. Eliminar el nodes 2 en el caso de que no requiera mas workers )
+minikube start --driver=podman --container-runtime=cri-o --profile k8s-cluster --nodes 2 --force
+
+
+##### Ya dentro del kube ####
+kubectl create
+kubectl get ( Kubectl get pod -n default) > Busca los pods en el namespace de default
+
