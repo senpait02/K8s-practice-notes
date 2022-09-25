@@ -1,0 +1,35 @@
+###### Los archivos k8s se crean atravez de YAML ####
+
+#### Las propiedades de alto nivel y su estructura basica seria #####
+#####################################################################
+
+---
+apiVersion:
+kind:
+metadata:
+  name: myapp-god
+  labels:
+    run: myapp
+    type: backend 
+spec:
+  containers:
+   - name: nginx
+     image: nginx
+
+
+#####################################################################################
+###### Desengolsando #####
+apiVersion > Seria la version del Api dependiendo del resource que se estaria utilizando
+kind> tipo de resource
+metadata > Son datos sobre el objeto, pueden ser nombre, etiquetas ( Su estructura seria de diccionario )
+spec: especificaciones de resource, ejemplo nombre del container, la imagen etc
+
+
+########################
+  KIND | ApiVERSION
+| Pod >  v1
+| Service >  v1
+| ReplicSet >  apps/v1
+| Deployment >  apps/v1
+|
+|
