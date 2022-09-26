@@ -27,6 +27,23 @@ kubectl get pods -o wide >>> PAra ver mas info
 kubectl get pods nginx -o yaml >>> para ver en version yml
 
 
+##### CICLO DEL DEPLOY #####
+
+CREATE >>>> kubectl create -f deploy.yaml
+
+GET >>> kubectl get deploy
+
+UPDATE >>> kubectl apply -f deploy.yml
+
+STATUS >>> kubectl rollout status deploy/myapp-deploy
+STATUS2 >>> kubectl rollout history deploy/myapp-deploy
+
+ROLLBACK >>> kubectl rollout undo deploy/myapp-deploy
+
+
+
+
+
 
 
 

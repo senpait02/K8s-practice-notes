@@ -1,0 +1,19 @@
+Por defecto kubectl viene con la estrategia de RollingUpdate, eso quiere decir que al actualizar laa version elimina y actualiza el pod uno por uno sin perder trafico en el proceso
+
+####Se actualiza el image del .yaml#####
+
+#### Para aplicar los cambios del update
+kubectl apply -f deployment.yaml
+
+kubectl describe myapp-deploy >>> Otra forma de ver el estado del update
+
+#### Comandos del rollback ######
+
+kubectl rollout undo deployment/myapp-deploy >>>>  PARA REALIZAR LA VUELTA ATRASSSS
+
+kubectl rollout status deployment/myapp-deploy >>> Ver el estado actual del rollback
+
+kubectl rollout history deployment/myapp-deplou >>> Ver el historial
+
+kubectl get replicasets >>> para ver la cantidad de replicas antiguas
+

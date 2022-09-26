@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-app
+  labels:
+     app: redis-lab
+     type: lab_for_python
+spec:
+  selector:
+    matchLabels:
+      app: redis-lab
+  replicas: 2
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        app: redis-lab
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest
