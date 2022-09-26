@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-app
+  labels:
+    type: monitoring
+    app: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: prometheus
+  replicas: 3  
+  template:
+    metadata:
+      name: prometh
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: docker.io/bitnami/prometheus
+    

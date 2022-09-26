@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+spec:
+  type: ClusterIP     #### Por defecto siempre sera cluster
+  ports:
+  - port: 80    ### Para exponer el pod
+    targetPort: 80  ### Para exponer el service
+  selector:
+    app: myapp   ### SE vincula el label

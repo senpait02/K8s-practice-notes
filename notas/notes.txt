@@ -1,0 +1,89 @@
+############ K8s Notes ########
+
+#### Para instalar minikube #####
+https://minikube.sigs.k8s.io/docs/start/
+
+#### PAra instalar kubectl #####
+https://kubernetes.io/docs/tasks/tools
+
+
+OBS: En pocas palabras minikube funciona como un master y un worker node, es decir, 
+
+#### Para correr el minikube en driver podman (Como sudo darle siempre al --force. Eliminar el nodes 2 en el caso de que no requiera mas workers )
+minikube start --driver=podman --container-runtime=cri-o --profile k8s-cluster --nodes 2 --force
+
+
+##### Ya dentro del kube ####
+kubectl create
+kubectl get ( Kubectl get pod -n default) > Busca los pods en el namespace de default
+
+
+
+##### Para pods #####
+kubectl run nginx --image nginx ( Descarga la imagen de docker hub )
+kubectl get pods >> Sirve para ver los pods deployados
+kubectl describe pods >> Para ver mas detalles con el "describe"
+kubectl get pods -o wide >>> PAra ver mas info
+kubectl get pods nginx -o yaml >>> para ver en version yml
+
+
+##### CICLO DEL DEPLOY #####
+
+CREATE >>>> kubectl create -f deploy.yaml
+
+GET >>> kubectl get deploy
+
+UPDATE >>> kubectl apply -f deploy.yml
+
+STATUS >>> kubectl rollout status deploy/myapp-deploy
+STATUS2 >>> kubectl rollout history deploy/myapp-deploy
+
+ROLLBACK >>> kubectl rollout undo deploy/myapp-deploy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#################### TAKE NOTESSS #######################
+#### una vez creado el deploy, se debe de crear el service del mismo, para ello se usa el <expose> #####
+kubectl expose deploy jenkins-app --port 8080 --target-port 8080 
+
+
+
+###### Luego se crea el ingress del mismo > Se puede ver mas detalle con kubectl create ingress --help ######
+kubectl create ingress jenkins-web --rule="jenkins.local.com/=jenkins-app:8080"
+OBS: en el caso de minikube, activar el ingresss
+
+
+
+
+#### Comandos rapido ####
+kubectl create deployment --name grafana-app --image grafana/grafana --replicas 2   >>> Para crear un deploy con replicas
+
+#### Para tomar ejemplo de yaml / se puede remplazar con pods, etc
+kubectl create deploy web-app6 --image nginx --replicas 50 --dry-run -o yaml
+kubectl create deploy web-app6 --image nginx --replicas 50 --dry-run -o wide

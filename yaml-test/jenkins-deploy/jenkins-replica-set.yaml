@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: jenkins-replica
+  labels:
+    app: jenkins
+    type: automa
+spec:
+  template:
+    metadata:
+     name: jenkins
+     labels:
+      app: jenkins
+      type: automatizion-tools
+    spec:
+     containers:
+     - name: jenkins
+       image: docker.io/jenkins/jenkins:lts-jdk11
+  replicas: 2
+  selector:
+   matchLabels:
+     type: automa
+    

@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+    type: automatizion-tools
+spec:
+  containers:
+   - name: jenkins
+     image: docker.io/jenkins/jenkins:lts-jdk11

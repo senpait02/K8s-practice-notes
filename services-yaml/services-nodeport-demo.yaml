@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp   ####Vincula los labels del pod al servicio
+  type: <Node Port>
+  ports:
+  - port: <Port> ### Puerto del service
+    targetPort: <Target Port> ##Puerto del pod
+    nodePort: <Port> ### Puerto externo al nodo  ##Rango de 30000 - 32767
+
