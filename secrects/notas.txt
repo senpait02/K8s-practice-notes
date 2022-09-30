@@ -1,0 +1,18 @@
+##### Es como un ConfigMap pero para datos mas densos
+
+echo "wwe060502" | base64 >>> lo codifica
+echo "sajasska" | base64 -d >> Lo decodifica
+
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-for-lol
+data:
+  APP_password: sajsas=          ####SE coloca el dato codificado  
+
+
+
+
+  #### kubectl get secret
+  ### kubectl describe secret

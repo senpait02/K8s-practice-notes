@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+  labels:
+    app: env
+spec:
+  selector:
+    matchLabels:
+      app: env
+  replicas: 3
+  template:
+    metadata:
+      name: app-pod
+      labels:
+        app: env
+    spec:
+      containers:
+      - name: env
+        image: env
+        env:
+         - name: APP_COLOR  ######## Se define las variables del contenedor, se puede ver con un docker inspect image
+           value: red    

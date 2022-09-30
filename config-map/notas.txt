@@ -1,0 +1,21 @@
+EN ella se puede colocar los datos del Enviroment del contenedor
+
+Para crear el configmap
+
+OBS: poner en el spec del container
+
+Declarativa...
+
+############################################################
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+spec:
+  data:  
+    APP_COLOR: blue                      ############ Aca se coloca las variables del container
+    APP_Mode: prod 
+
+#### Obviamente hay los comandos basicos para saber mas info
+# kubectl get cf 
+# kubectl describe cf <name>    

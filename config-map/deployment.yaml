@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-app
+  labels:
+    app: deplou
+spec:
+  selector:
+    matchLabels:
+      app: deplou
+  replicas: 3
+  template:
+    metadata:
+      name: pod
+      labels:
+        app: deplou
+    spec:
+      containers:
+      - image: lol
+        name: lol
+        ports:
+          - containerPorts: 8080
+        envFrom:
+        - configMapRef:
+            name: app-config  ###Nombre del Config Map      
