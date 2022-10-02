@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: deploy-frontend
+spec:
+  selector:
+    matchLabels:
+      app: front-deploy
+  replicas: 4
+  strategy:                 ##### Tipo de estrategia
+    type: Recreate
+  template:
+    metadata:
+      name: front-pod
+      labels:
+        app: front-deploy
+    spec:
+    - name: deploy-pod
+      image: kodekloud/webapp-color:v2    
+      ports:
+      - containerPort: 8080
+        protocol: TCP

@@ -1,0 +1,16 @@
+###### Los jobs se crean para ejecutar una tarea de una imagen y luego morir ####
+
+#### Los cronjobs funcionan como el crontab, o sea usan el .....
+
+
+* * * * * 
+| | | | | 
+| | | | dia de la semana ( 0 - 7) 0,7 > son domingos
+| | | |
+| | | mes del año ( 1 - 12)
+| | |  
+| | dia del mes  ( 0 - 31)
+| |
+| hora ( 0-23 )
+|
+minuto ( 0 - 59)

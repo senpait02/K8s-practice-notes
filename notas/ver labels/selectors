@@ -1,0 +1,3 @@
+kubectl get pods --selector app=app ####    Nombre del label
+
+kubectl get all --selector env=prod ##### Para ver datos del label en todo los aspectos - RS, secrets etc

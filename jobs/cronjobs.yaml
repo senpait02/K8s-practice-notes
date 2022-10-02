@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cron-job     
+spec:  
+  schedule: "15 22 * * 0-4 "
+  jobTemplate: ###Abajo se agrega el job normal
+    spec:
+     completions: 3  ##### Funciona como deploy, la cantidad de pods a crearse para ejecutar la tarea
+     parallelism: 2   #####Indica la cantidad de jobs a ejecutarse al mismo tiempo
+    template:
+     spec:
+      containers:
+      - name: uwuntu
+        image: ubuntu
+        command: ['sleep','1200']
+      restartPolicy: Never           ##### MUY IMPORTANTE, funciona para reiniciar el pod una vez terminada las tareas y las vu
+                                      #### a realizar en bucle Never = no | Always: si  
+      
