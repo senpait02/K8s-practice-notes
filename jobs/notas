@@ -14,3 +14,8 @@
 | hora ( 0-23 )
 |
 minuto ( 0 - 59)
+
+
+
+kubectl get job
+kubectl get cronjob
