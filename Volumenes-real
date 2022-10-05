@@ -1,0 +1,70 @@
+INYECTAR DE FORMA PREDETERMINADA A UN DEPLOY
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testing
+  namespace: default
+  labels:
+    name: testing-deploy
+spec:
+  selector:
+    matchLabels:
+      app: alpine-pod
+  replicas: 3
+  containers:
+    metadata:
+      name: pod-v1
+      labels:
+        app: alpine-pod
+    spec:
+      containers:
+      - name: alpine
+        image: nginx 
+        volumeMounts:
+        - mountPath: /opt  ### ESTE SERA DENTRO DEL CONTENEDOR
+          name: data-volume   
+
+  volumes:
+  - name: data-volume
+    hostPath:
+      path: /data  #### ESTE SERA EL DIRECTORIO DEL NODO LOCAL
+      type: Directory   
+      
+      
+      
+      CREAR UN PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-vol1
+  labels:
+    name: Recursos_Para_el_DATASYSTEM    
+spec:
+  accessMode:
+  - ReadWriteOnce  
+  capacity:                             ##### EXISTEN 3 MODOS COMPATIBLES
+    storage: 1Gi                            # ReadWriteOnce
+  hostPath:                                 # ReadOnlyMany
+    path: /tmp/data                         # ReadWriteMany  
+    
+    
+    
+  
+CREAR UN PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: persistent-vc
+spec:
+  accessMode:
+  - ReadWriteOnce
+  resources:
+    request:
+      storage: 500Mi    
+  selector:
+    matchLabels: 
+      name: Recursos_Para_el_DATASYSTEM    
+
+
+
+      ### ESTE TRATARA DE CONECTARSE CON EL PV, tratara de buscar en este caso por el selector
