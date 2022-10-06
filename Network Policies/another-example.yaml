@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: pod           #### ESTE VA PARA ASOCIAR AL POD
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:            #### ESTE SERIA PARA QUE INGRESE TRAFICO DE OTRO POD (INGRESS) el matchLabels seria para el pod que quiere ingresar
+        matchLabels:
+          name: api-pod
+      namespaceSelector:    ##### ESTE SERIA PARA AGREGAR POD DE OTROS NAMESPACESS    
+        matchLabels:
+          name: namespace1
+    - ipBlock:
+        cidr: 192.168.0.11  
+    ports:
+    - procotol: TCP
+      port: 3306      
+  egress:
+  - to:
+      - ipBlock:
+          cidr: 192.168.0.9
+    ports:       

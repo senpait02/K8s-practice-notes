@@ -68,3 +68,23 @@ spec:
 
 
       ### ESTE TRATARA DE CONECTARSE CON EL PV, tratara de buscar en este caso por el selector
+
+
+
+
+#### USAR EL PVC EN EL POD
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+    - name: myfrontend
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: persistent-vc
