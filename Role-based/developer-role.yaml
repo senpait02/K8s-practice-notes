@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer
+rules:
+- apiGroups: [""] 
+  resources: ["pods, deployment"] 
+  verbs: ["list", "get", "create", "update", "delete"]
+
+- apiGroups: [""]
+  resourceS: ["ConfigMap"]
+  verbs: ["list", "get", "create"]
+
+
+
+ESTO SE DEBE LINKEAR AL USUARIO
